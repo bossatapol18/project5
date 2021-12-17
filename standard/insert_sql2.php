@@ -14,6 +14,7 @@ if ($mode == "insert_data") {
     $group_id = $_REQUEST["group_id"];
     $agency_id = $_REQUEST["agency_id"];
     $type_id = $_REQUEST["type_id"];
+    $department_id = $_REQUEST["department_id"];
 
 
 
@@ -53,91 +54,128 @@ if ($mode == "insert_data") {
 
     $standard_idtb =  $resultMaxid['Maxid'];
 
-    if ($stmt == false) {
-        die(print_r(sqlsrv_errors()));
-    } else {
-        echo "บันทึกข้อมูลสำเร็จ";
-    }
+    // if ($stmt == false) {
+    //     die(print_r(sqlsrv_errors()));
+    // } else {
+    //     echo "บันทึกข้อมูลสำเร็จ";
+    //     echo "<br>";
+
+    // }
 
     //1
 
-    $test = count($group_id);
+    $countgroup = count($group_id);
 
     //echo $test;
 
 
-    for ($i = 0; $i < $test; $i++) {
-        $a =  $group_id[$i];
+    for ($i = 0; $i < $countgroup; $i++) {
+        $groupid =  $group_id[$i];
 
         //echo "<br>";
+        if (trim($groupid) <> "") {
 
-        $sql2 = "INSERT INTO dimension_group ( group_id , standard_idtb  ) 
-      VALUES ('$a', '$standard_idtb')";
+            $sql2 = "INSERT INTO dimension_group ( group_id , standard_idtb  ) 
+            VALUES ('$groupid', '$standard_idtb')";
 
-        $stmt2 = sqlsrv_query($conn, $sql2);
-        if ($stmt2 == false) {
-            die(print_r(sqlsrv_errors()));
-        } else {
-            echo "บันทึกข้อมูลสำเร็จ1";
+            $stmt2 = sqlsrv_query($conn, $sql2);
         }
-    
+
+        // if ($stmt2 == false) {
+        //     die(print_r(sqlsrv_errors()));
+        // } else {
+        //     echo "บันทึกข้อมูลสำเร็จ1";
+        // }
+
 
         //echo "<br>";
     }
 
     //2
 
-    $test2 = count($agency_id);
+    $countagency = count($agency_id);
 
     //echo $test;
 
 
-    for ($i = 0; $i < $test2; $i++) {
-        $a =  $agency_id[$i];
+    for ($i = 0; $i < $countagency; $i++) {
+        $agencyid =  $agency_id[$i];
 
         //echo "<br>";
 
-        $sql3 = "INSERT INTO dimension_agency ( agency_id , standard_idtb  ) 
-      VALUES ('$a', '$standard_idtb')";
+        if (trim($agencyid) <> "") {
+            $sql3 = "INSERT INTO dimension_agency ( agency_id , standard_idtb  ) 
+            VALUES ('$agencyid', '$standard_idtb')";
 
-        $stmt3 = sqlsrv_query($conn, $sql3);
-        if ($stmt3 == false) {
-            die(print_r(sqlsrv_errors()));
-        } else {
-            echo "บันทึกข้อมูลสำเร็จ2";
+            $stmt3 = sqlsrv_query($conn, $sql3);
         }
-    
+        // if ($stmt3 == false) {
+        //     die(print_r(sqlsrv_errors()));
+        // } else {
+        //     echo "บันทึกข้อมูลสำเร็จ2";
+        // }
+
 
         //echo "<br>";
     }
 
     //3
 
-    $test3 = count($type_id);
+    $counttype = count($type_id);
 
-    //echo $test;
+    //echo $test; สร้างตัวแปรต่อ ทำอีฟ
 
 
-    for ($i = 0; $i < $test3; $i++) {
-        $a =  $type_id[$i];
+    for ($i = 0; $i < $counttype; $i++) {
+        $typeid =  $type_id[$i];
 
         //echo "<br>";
+        if (trim($typeid) <> "") {
 
         $sql3 = "INSERT INTO dimension_type ( type_id , standard_idtb  ) 
-      VALUES ('$a', '$standard_idtb')";
+      VALUES ('$typeid', '$standard_idtb')";
 
         $stmt3 = sqlsrv_query($conn, $sql3);
-        if ($stmt3 == false) {
-            die(print_r(sqlsrv_errors()));
-        } else {
-            echo "บันทึกข้อมูลสำเร็จ3";
+
         }
-    
+        // if ($stmt3 == false) {
+        //     die(print_r(sqlsrv_errors()));
+        // } else {
+        //     echo "บันทึกข้อมูลสำเร็จ3";
+        // }
+
 
         //echo "<br>";
     }
 
-    //echo "OK! SAVE";
+    $countboxdepartment = count($department_id);
+
+    //echo $test;
+
+
+    for ($i = 0; $i < $countboxdepartment; $i++) {
+        $departmentid =  $department_id[$i];
+
+        //echo "<br>";
+        if (trim($departmentid) <> "") {
+
+        $sql4 = "INSERT INTO dimension_department ( department_id , standard_idtb  ) 
+      VALUES ('$departmentid', '$standard_idtb')";
+
+        $stmt4 = sqlsrv_query($conn, $sql4);
+        }
+
+        // if ($stmt4 == false) {
+        //     die(print_r(sqlsrv_errors()));
+        // } else {
+        //     echo "บันทึกข้อมูลสำเร็จ4";
+        // }
+
+
+        //echo "<br>";
+    }
+
+    echo "OK! SAVE";
 
     //echo "<script>location.href='index.php?PG=1';</script>";
 }

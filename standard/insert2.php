@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Funda Of Web IT</title>
+    <title></title>
 </head>
 
 <body>
@@ -68,76 +68,112 @@
                                 <hr>
 
                                 <!-- หลายฟอร์ม -->
-                                <a href="javascript:void(0)" class="add-more-form float-end btn btn-success">เพิ่ม</a>
-                                <div class="main-form mt-3 ">
-                                    <div class="row">
+                                <a href="javascript:void(0)" onclick="add_element('main','sub_main');" class=" float-end btn btn-success">เพิ่ม</a>
+                                <div class="main-form mt-3 " id="main">
+                                    <div class="row" id="sub_main">
                                         <div class="col-md-4">
                                             <div class="form-group mb-2">
                                                 <label for="">กลุ่มผลิตภัณฑ์</label>
-                                                <select class="form-control" name="group_id[]" id="group_id" style="height: unset !important;"> 
-                                                    <?php 
+                                               
+                                                <select class="form-control" name="group_id[]" id="group_id" style="height: unset !important;">
+                                                     <option selected disabled>กรุณาเลือกกลุ่มผลิตภัณฑ์</option>
+                                                     <?php
                                                     $sql = "SELECT * FROM group_tb";
                                                     $query = sqlsrv_query($conn, $sql);
                                                     while ($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { ?>
-                                                       <option value="<?php echo $result['group_id'];  ?>"><?php echo $result['group_name'];  ?></option>
+                                                        <option value="<?php echo $result['group_id'];  ?>"><?php echo $result['group_name'];  ?></option>
                                                     <?php } ?>
                                                 </select>
+                                                <button type="button" onclick="$(this).parent().parent().parent().remove();" class="remove-btn btn btn-danger mt-2">ลบ</button>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="paste-new-forms"></div>
+                                <!-- <div class="paste-new-forms"></div> -->
 
                                 <!--  -->
                                 <hr>
                                 <!-- หลายฟอร์ม -->
-                                <a href="javascript:void(0)" class="add-more-form1 float-end btn btn-success">เพิ่ม</a>
-                                <div class="main-form1 mt-3 ">
-                                    <div class="row">
+                                <a href="javascript:void(0)" onclick="add_element('main1','sub_main1');" class=" float-end btn btn-success">เพิ่ม</a>
+                                <div class="main-form1 mt-3 " id="main1">
+                                    <div class="row" id="sub_main1">
                                         <div class="col-md-4">
                                             <div class="form-group mb-2">
                                                 <label for="">หน่วยงานที่สามารถทดสอบได้</label>
-                                                <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;">    
-                                                    <?php 
+                                                <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;">
+                                                <option selected disabled>กรุณาเลือกหน่วยงานที่สามารถทดสอบได้</option>
+                                                   <?php
                                                     $sql2 = "SELECT * FROM agency_tb";
                                                     $query2 = sqlsrv_query($conn, $sql2);
                                                     while ($result = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                                                       <option value="<?php echo $result['agency_id'];  ?>"><?php echo $result['agency_name'];  ?></option>
+                                                        <option value="<?php echo $result['agency_id'];  ?>"><?php echo $result['agency_name'];  ?></option>
                                                     <?php } ?>
                                                 </select>
+                                                <button type="button" onclick="$(this).parent().parent().parent().remove();" class="remove-btn btn btn-danger mt-2">ลบ</button>
+
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
 
-                                <div class="paste-new-forms1"></div>
+                                <!-- <div class="paste-new-forms1"></div> -->
                                 <!--  -->
                                 <hr>
                                 <!-- หลายฟอร์ม -->
-                                <a href="javascript:void(0)" class="add-more-form2 float-end btn btn-success">เพิ่ม</a>
-                                <div class="main-form2 mt-3 border-bottom">
-                                    <div class="row">
+                                <a href="javascript:void(0)" onclick="add_element('main2','sub_main2');" class="float-end btn btn-success">เพิ่ม</a>
+                                <div class="main-form2 mt-3 border-bottom" id="main2">
+                                    <div class="row" id="sub_main2">
                                         <div class="col-md-4">
-                                            <div class="form-group mb-2">
+                                            <div class="form-group mb-2"> 
                                                 <label for="">ประเภทผลิตภัณฑ์</label>
-                                                <select class="form-control" name="type_id[]" id="type_id" style="height: unset !important;"> 
-                                                    
-                                                    <?php 
-                                                    $sql3 = "SELECT * FROM type_tb";
+                                                <select class="form-control" name="type_id[]" id="type_id" style="height: unset !important;">
+                                                <option selected disabled>กรุณาเลือกประเภทผลิตภัณฑ์</option>
+                                                <?php
+                                                    $sql3 = "SELECT * FROM type_tb"; 
                                                     $query3 = sqlsrv_query($conn, $sql3);
                                                     while ($result = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
-                                                       <option value="<?php echo $result['type_id'];  ?>"><?php echo $result['type_name'];  ?></option>
+                                                        <option value="<?php echo $result['type_id'];  ?>"><?php echo $result['type_name'];  ?></option>
                                                     <?php } ?>
                                                 </select>
+                                                <button type="button" onclick="$(this).parent().parent().parent().remove();" class="remove-btn btn btn-danger mt-2">ลบ</button>
                                             </div>
+                                           
                                         </div>
 
                                     </div>
                                 </div>
 
-                                <div class="paste-new-forms2"></div>
+                                
+
+                                <a href="javascript:void(0)" onclick="add_element('main3','sub_main3');" class="float-end btn btn-success">เพิ่ม</a>
+                                <div class="main-form2 mt-3 border-bottom" id="main3">
+                                    <div class="row" id="sub_main3">
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-2"> 
+                                                <label for="">หน่วยงานที่ขอ</label>
+                                                <select class="form-control" name="department_id[]" id="department_id" style="height: unset !important;">
+                                                <option selected disabled>กรุณาเลือกหน่วยงานที่ขอ</option>
+                                                   <?php
+                                                    $sql3 = "SELECT * FROM department_tb";
+                                                    $query3 = sqlsrv_query($conn, $sql3);
+                                                    while ($result = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
+                                                        <option value="<?php echo $result['department_id'];  ?>"><?php echo $result['department_name'];  ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <button type="button" onclick="$(this).parent().parent().parent().remove();" class="remove-btn btn btn-danger mt-2">ลบ</button>
+                                            </div>
+                                           
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                
+
+                                <!-- <div class="paste-new-forms2"></div> -->
                                 <center>
                                     <!--  -->
                                     <button type="submit" class="btn btn-primary mt-3">บันทึกข้อมูล</button>

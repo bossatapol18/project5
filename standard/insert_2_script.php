@@ -1,7 +1,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
+<script style="text/javascript">
     $(document).ready(function() {
 
         $(document).on('click', '.remove-btn', function() {
@@ -13,14 +13,15 @@
             <div class="row">\
                                         <div class="col-md-4">\
                                             <div class="form-group mb-2">\
-                                                <label for="">กลุ่มผลิตภัณฑ์</label>\
-                                                <select name="group_id[]" id="group_id"> \              
-                                                   ' <?php 
+                                            <label for="">กลุ่มผลิตภัณฑ์</label>\
+                                                <select class="form-control" name="group_id[]" id="group_id" style="height: unset !important;">\ 
+                                                    <?php 
                                                     $sql = "SELECT * FROM group_tb";
                                                     $query = sqlsrv_query($conn, $sql);
                                                     while ($result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) { ?>
-                                                       <option value="<?php echo $result["group_id"];  ?>"><?php echo $result["group_name"];  ?></option>
-                                                    <?php } ?>'+
+                                                       <option value="<?php echo $result['group_id'];  ?>"><?php echo $result['group_name'];  ?></option>
+                                                    <?php } ?>
+                                                </select>
                                                 </select>\
                                             </div>\
                                         </div>\

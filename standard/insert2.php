@@ -74,7 +74,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group mb-2">
                                                 <label for="">กลุ่มผลิตภัณฑ์</label>
-                                                <select name="group_id[]" id="group_id"> 
+                                                <select class="form-control" name="group_id[]" id="group_id" style="height: unset !important;"> 
                                                     <?php 
                                                     $sql = "SELECT * FROM group_tb";
                                                     $query = sqlsrv_query($conn, $sql);
@@ -98,8 +98,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group mb-2">
                                                 <label for="">หน่วยงานที่สามารถทดสอบได้</label>
-                                                <select name="agency_id[]" id="agency_id">
-                                                    
+                                                <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;">    
                                                     <?php 
                                                     $sql2 = "SELECT * FROM agency_tb";
                                                     $query2 = sqlsrv_query($conn, $sql2);
@@ -123,7 +122,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group mb-2">
                                                 <label for="">ประเภทผลิตภัณฑ์</label>
-                                                <select name="type_id[]" id="type_id">
+                                                <select class="form-control" name="type_id[]" id="type_id" style="height: unset !important;"> 
                                                     
                                                     <?php 
                                                     $sql3 = "SELECT * FROM type_tb";

@@ -1,5 +1,18 @@
-<?php include('status_sql.php'); ?>
-<?php include('insert_status.php'); ?>
+<?php
+if (isset($_POST) && !empty($_POST)) {
+    $standard_idtb = $_POST['standard_idtb'];
+    $standard_number = $_POST['standard_number'];
+    $standard_meet = $_POST['standard_meet'];
+    $standard_detail = $_POST['standard_detail'];
+    $standard_mandatory = $_POST['standard_mandatory'];
+    $standard_tacking = $_POST['standard_tacking'];
+    $standard_note = $_POST['standard_note'];
+}
+$sql = ("SELECT * FROM main_std "); 
+$query = sqlsrv_query($conn, $sql);
+?>
+
+
 <section class="items-grid section custom-padding">
     <div class="">
         <div class="row">
@@ -20,11 +33,8 @@
                             <th>ลำดับที่</th>
                             <th>วาระจากในที่ประชุมสมอ.</th>
                             <th>เลขที่มอก.</th>
-                            <th>ชื่อมาตรฐาน</th>
-                            <th>กลุ่มผลิตภัณฑ์</th>
-                            <th>หน่วยงานที่สามารถทดสอบได้</th>
+                            <th>ชื่อมาตรฐาน</th>                    
                             <th>มาตรฐานบังคับ</th>
-                            <th>หน่วยงานที่ขอ</th>
                             <th>วันที่แต่งตั้ง</th>
                             <th>สถานะ</th>
                             <th>เลขเอกสารที่เกี่ยวข้อง</th>
@@ -33,17 +43,13 @@
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
-                        <?php while ($data = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) {
-                        ?>
+                        <?php while ($data = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) :?>
                             <tr class="text-center">
                                 <td class="align-middle"><?= $i++; ?></td>
                                 <td class="align-middle"><?= $data['standard_meet'] ?></td>
                                 <td class="align-middle"><?= $data['standard_number'] ?></td>
                                 <td class="align-middle"><?= $data['standard_detail'] ?></td>
-                                <td class="align-middle"><?= $data['group_name'] ?></td>
-                                <td class="align-middle"><?= $data['agency_name'] ?></td> <!--ลองเปลี่ยน agency_id รันออก -->
                                 <td class="align-middle"><?= $data['standard_mandatory'] ?></td>
-                                <td class="align-middle"><?= $data['department_name'] ?></td> <!--ลองเปลี่ยน department_id รันออก -->
                                 <td class="align-middle">
                                     <!-- <input type="date" class="form-control" name="progess_date" required> -->
                                     -
@@ -58,11 +64,12 @@
                                 <td class="align-middle">
                                     <div class="mb-4">
                                         <!--กดรายงานสถานะแล้วไปหน้าไหนต่อ แล้วในหน้านั้นเป็นประมาณไหน จะได้สร้างถูก -->
-                                        
-                                        <a href="?page=statusedit&standard_id=<?php echo $data["standard_id"]; ?>" class="btn btn-sm btn-warning" role="button">แก้ไขสถานะ</a> 
-                                </td>
+                                        <a href="?page=<?= $_GET['page'] ?>&function=update&standard_idtb=<?= $data['standard_idtb'] ?>" class="btn btn-sm btn-warning">แก้ไขสถานะ</a>
+                    
+                                    </div>
+                                    </td>
                             </tr>
-                        <?php } ?>
+                        <?php endwhile; ?>
                     </tbody>
                 </table>
             </form>

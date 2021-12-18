@@ -124,7 +124,11 @@
     } elseif (isset($_GET['page']) && $_GET['page'] == 'insert2') {
         include('standard/insert2.php');
     } elseif (isset($_GET['page']) && $_GET['page'] == 'status') {
-        include('standard/status.php');
+        if (isset($_GET['function']) && $_GET['function'] == 'update') {
+            include('standard/status_edit.php');
+        } else {
+            include('standard/status.php');
+        }
     } elseif (isset($_GET['page']) && $_GET['page'] == 'report') {
         include('standard/report.php');
     } elseif (isset($_GET['page']) && $_GET['page'] == 'statusedit') {
@@ -192,5 +196,4 @@
 
                 $("#" + mom).append(cloning);
         }
-
 </script>

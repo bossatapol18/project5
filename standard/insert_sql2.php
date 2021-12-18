@@ -16,28 +16,6 @@ if ($mode == "insert_data") {
     $type_id = $_REQUEST["type_id"];
     $department_id = $_REQUEST["department_id"];
 
-
-
-
-
-
-    // print_r($fname);
-
-    // if (count($fname) > "0") {
-
-    //     foreach ($fname as $first_name) {
-
-    //         if (trim($first_name) != "") {
-    //             //    echo "<br>".$first_name; 
-
-    //              $sql = "INSERT INTO main_user (user_fname,user_lname,user_username,user_password,user_status,user_add_date)
-    //              VALUES ('$fname','$lname','$username','$password','1','$date_today')";
-
-    //             $conn->query($sql);
-    //         }
-    //     }
-    // }
-
     $sql = "INSERT INTO main_std ( standard_mandatory , standard_meet , standard_tacking , standard_number , standard_detail , standard_note  ) 
       VALUES ('$standard_mandatory','$standard_meet','$standard_tacking','$standard_number','$standard_detail','$standard_note')";
 
@@ -174,8 +152,17 @@ if ($mode == "insert_data") {
 
         //echo "<br>";
     }
-
-    echo "OK! SAVE";
+    if (sqlsrv_query($conn, $sql4)) {
+        $alert = '<script type="text/javascript">';
+        $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
+        $alert .= 'window.location.href = "?page=status";';
+        $alert .= '</script>';
+        echo $alert;
+        exit();;
+    } else {
+        echo "Error: " . $sql0 . "<br>" . sqlsrv_errors($conn);
+    }
+    sqlsrv_close($conn);
 
     //echo "<script>location.href='index.php?PG=1';</script>";
 }

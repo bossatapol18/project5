@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProducttypeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupController;
@@ -47,4 +48,11 @@ Route::post('/sup/update/{id}',[SupController::class,'update']);
 
 // product
 // type
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 Route::get('/producttype',[ProducttypeController::class,'index'])->name('producttype');
+Route::post('/producttype/add',[ProducttypeController::class,'store'])->name('addproducttype');
+Route::get('/producttype/edit/{id}',[ProducttypeController::class,'edit']);
+Route::post('/producttype/update/{id}',[ProducttypeController::class,'update']);
+});
+
+Route::get('/product',[ProductController::class,'index'])->name('product');

@@ -24,6 +24,9 @@
                     <x-jet-nav-link href="{{ route('sup') }}">
                         รายการซัพพลายเออร์
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('product') }}">
+                        รายการสินค้า
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('producttype') }}">
                         รายการประเภทสินค้า
                     </x-jet-nav-link>
